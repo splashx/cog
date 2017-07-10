@@ -50,7 +50,7 @@ services:
     extends:
       file: docker-compose.common.yml
       service: common
-    image: operable/cog:latest
+    image: splashx/cog:latest
     environment:
       - COG_MQTT_HOST=0.0.0.0
       - DATABASE_URL=ecto://cog:cog@postgres:5432/cog

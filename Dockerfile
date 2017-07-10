@@ -29,7 +29,7 @@ RUN apk --no-cache add \
     mix deps.compile && \
     apk del .build_deps && \
     apk add --update \
-      proxychains-ng \
+      proxychains-ng 
 
 COPY emqttd_plugins/ /home/operable/cog/emqttd_plugins/
 COPY priv/ /home/operable/cog/priv/
