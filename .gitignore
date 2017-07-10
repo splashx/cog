@@ -9,5 +9,5 @@ Mnesia.*
 /cover
 docker-compose.override.yml
 .env
-
+APKINDEX.tar.gz
 cogctl-for-docker-build

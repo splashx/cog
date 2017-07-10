@@ -21,4 +21,4 @@ if [[ -n "$COG_BOOTSTRAP_USERNAME" && -n "$COG_BOOTSTRAP_PASSWORD" ]]; then
 fi
 
 echo "Launching Cog server..."
-elixir --no-halt --name cog@127.0.0.1 -S mix phoenix.server --no-compile --no-deps-check
+proxychains elixir --no-halt --name cog@127.0.0.1 -S mix phoenix.server --no-compile --no-deps-check
