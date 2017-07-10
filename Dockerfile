@@ -1,6 +1,7 @@
 FROM operable/elixir:1.3.4-r0
 
 ENV MIX_ENV prod
+ENV PROXYCHAINS_CONF=/etc/proxychains/proxychains.conf
 
 RUN addgroup -g 60000 operable && \
     adduser -h /home/operable -D -u 60000 -G operable -s /bin/ash operable
@@ -26,12 +27,15 @@ RUN apk --no-cache add \
         expat-dev \
         libstdc++ && \
     mix deps.compile && \
-    apk del .build_deps
+    apk del .build_deps && \
+    apk add --update \
+      proxychains-ng \
 
 COPY emqttd_plugins/ /home/operable/cog/emqttd_plugins/
 COPY priv/ /home/operable/cog/priv/
 COPY web/ /home/operable/cog/web/
 COPY lib/ /home/operable/cog/lib/
+COPY etc/proxychains/proxychains.conf $PROXYCHAINS_CONF
 
 RUN mix compile --no-deps-check --no-archives-check
 
