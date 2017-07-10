@@ -3,15 +3,15 @@ FROM operable/elixir:1.3.4-r0
 ENV MIX_ENV prod
 ENV PROXYCHAINS_CONF=/etc/proxychains/proxychains.conf
 
-RUN addgroup -g 60000 operable && \
-    adduser -h /home/operable -D -u 60000 -G operable -s /bin/ash operable
+#RUN addgroup -g 60000 operable && \
+#    adduser -h /home/operable -D -u 60000 -G operable -s /bin/ash operable
 
 # Create directories and upload cog source
 WORKDIR /home/operable/cog
 # Really, we only need the cog directory to be owned by operable,
 # because (by default) that's where we write log files. None of the
 # actual scripts or library files need to be owned by operable.
-RUN chown -R operable /home/operable/cog
+#RUN chown -R operable /home/operable/cog
 
 COPY mix.exs mix.lock /home/operable/cog/
 COPY config/ /home/operable/cog/config/
@@ -44,7 +44,7 @@ COPY scripts/ /home/operable/cog/scripts/
 # This should be in place in the build environment already
 COPY cogctl-for-docker-build /usr/local/bin/cogctl
 
-USER operable
+#USER operable
 # TODO: For some reason, Hex needs to be present in the operable
 # user's home directory for Cog to run (specifically, for it to apply
 # the database migrations at startup). It complains of not being able
